@@ -1,0 +1,13 @@
+#DocumentIndex index.html index.php
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+<IfModule mod_deflate.c>
+ #Used to gzip html/js files
+ AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml text/css application/x-javascript application/javascript application/x-httpd-php text/javascript
+ AddOutputFilter DEFLATE php js css html
+ BrowserMatch \bMSIE\s6 no-gzip #exclude ie6, since it cannot handle gzip
+</IfModule>
